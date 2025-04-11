@@ -1,76 +1,80 @@
-<a href="https://www.breatheco.de"><img height="280" align="right" src="https://github.com/4GeeksAcademy/flask-rest-hello/blob/main/docs/assets/badge.png?raw=true"></a>
 
-# Flask Boilerplate for Junior Developers
+# Star Wars Blog API
 
-Create flask API's in minutes, [📹 watch the video tutorial](https://youtu.be/ORxQ-K3BzQA).
+Esta es una API RESTful desarrollada con Flask y SQLAlchemy que simula el backend de un blog inspirado en Star Wars. Permite consultar personajes, planetas y vehículos, además de gestionar usuarios y sus favoritos.
 
-- [Extensive documentation here](https://start.4geeksacademy.com).
-- Integrated with Pipenv for package managing.
-- Fast deloyment to render.com or heroku with `$ pipenv run deploy`.
-- Use of `.env` file.
-- SQLAlchemy integration for database abstraction.
+## 🚀 Tecnologías utilizadas
 
-## 1) Installation
+- Python 3
+- Flask
+- SQLAlchemy
+- Flask-Migrate
+- PostgreSQL (o SQLite para pruebas)
+- Flask-Admin
 
-This template installs itself in a few seconds if you open it for free with Codespaces (recommended) or Gitpod.
-Skip this installation steps and jump to step 2 if you decide to use any of those services.
+## 🧠 Funcionalidades principales
 
-> Important: The boiplerplate is made for python 3.10 but you can change the `python_version` on the Pipfile.
+- Consultar personajes, planetas y vehículos
+- Consultar detalle de cada entidad
+- Gestionar usuarios
+- Agregar y eliminar favoritos por usuario
 
-The following steps are automatically runned withing gitpod, if you are doing a local installation you have to do them manually:
+## 📦 Instalación y uso
 
-```sh
-pipenv install;
-psql -U root -c 'CREATE DATABASE example;'
-pipenv run init;
-pipenv run migrate;
-pipenv run upgrade;
-```
-
-> Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`
-
-## 2) How to Start coding
-
-There is an example API working with an example database. All your application code should be written inside the `./src/` folder.
-
-- src/main.py (it's where your endpoints should be coded)
-- src/models.py (your database tables and serialization logic)
-- src/utils.py (some reusable classes and functions)
-- src/admin.py (add your models to the admin and manage your data easily)
-
-For a more detailed explanation, look for the tutorial inside the `docs` folder.
-
-## Remember to migrate every time you change your models
-
-You have to migrate and upgrade the migrations for every update you make to your models:
+1. Clonar el repositorio:
 
 ```bash
-$ pipenv run migrate # (to make the migrations)
-$ pipenv run upgrade  # (to update your databse with the migrations)
+git clone https://github.com/tu-usuario/starwars-blog-api.git
+cd starwars-blog-api
 ```
 
-## Generate a database diagram
-
-If you want to visualize the structure of your database in the form of a diagram, you can generate it with the following command:
+2. Instalar dependencias:
 
 ```bash
-$ pipenv run diagram
+pipenv install
+pipenv shell
 ```
 
-This command will generate a file with the database diagram based on the models defined in `src/models.py`.
+3. Configurar base de datos en `.env` (opcional, usa SQLite por defecto).
 
-## Check your API live
+4. Crear y aplicar migraciones:
 
-1. Once you run the `pipenv run start` command your API will start running live and you can open it by clicking in the "ports" tab and then clicking "open browser".
+```bash
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+```
 
-> ✋ If you are working on a coding cloud like [Codespaces](https://docs.github.com/en/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace#sharing-a-port) or [Gitpod](https://www.gitpod.io/docs/configure/workspaces/ports#configure-port-visibility) make sure that your forwared port is public.
+5. Ejecutar la app:
 
-## Publish/Deploy your website!
+```bash
+python src/app.py
+```
 
-This boilerplate it's 100% read to deploy with Render.com and Herkou in a matter of minutes. Please read the [official documentation about it](https://start.4geeksacademy.com/deploy).
 
-### Contributors
 
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
+## 📡 Endpoints disponibles
 
-You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+| Método | Ruta                              | Descripción                           |
+|--------|-----------------------------------|---------------------------------------|
+| GET    | `/people`                         | Listar personajes                     |
+| GET    | `/people/<id>`                    | Detalle de personaje                  |
+| GET    | `/planets`                        | Listar planetas                       |
+| GET    | `/planets/<id>`                   | Detalle de planeta                    |
+| GET    | `/vehicles`                       | Listar vehículos                      |
+| GET    | `/vehicles/<id>`                  | Detalle de vehículo                   |
+| GET    | `/users`                          | Listar usuarios                       |
+| GET    | `/users/favorites?user_id=1`      | Favoritos del usuario                 |
+| POST   | `/favorite/planet/<id>?user_id=1` | Agregar planeta favorito              |
+| POST   | `/favorite/people/<id>?user_id=1` | Agregar personaje favorito            |
+| DELETE | `/favorite/planet/<id>?user_id=1` | Eliminar planeta favorito             |
+| DELETE | `/favorite/people/<id>?user_id=1` | Eliminar personaje favorito           |
+
+## 🧑‍💻 Autor
+
+- javierexe, Ing. Agrónomo | Científico de Datos | Desarrollador Fullstack  
+- Proyecto desarrollado como parte del curso de 4Geeks Academy
+
+---
+
+¡Que la fuerza te acompañe! 😝
